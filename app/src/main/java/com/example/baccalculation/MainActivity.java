@@ -11,20 +11,29 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity {
 
-    TextView input_recieve;
-
-
+    private TextView input_receive;
 
 
     ActivityResultLauncher<Intent> weight_gender_back = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), new ActivityResultCallback<ActivityResult>() {
         @Override
         public void onActivityResult(ActivityResult result) {
             if(result != null && result.getResultCode() == RESULT_OK){
-                if(result.getData() != null && result.getData().getStringExtra(SetWeightGender.KEY) != null){
-                    input_recieve.findViewById(R.id.initial_weight);
-                    input_recieve.setText(result.getData().getParcelableExtra(SetWeightGender.KEY));
+
+                Profile user = result.getData().getParcelableExtra(SetWeightGender.KEY);
+
+                if(result.getData() != null && Objects.nonNull(user)){
+                    setContentView(R.layout.activity_main);
+
+                    Double weight = user.getWeight();
+                    String gender = user.getGender();
+
+                    input_receive = findViewById(R.id.initial_weight);
+                    input_receive.setText(weight+"lbs"+"("+gender+")");
+
                 }
 
             }
@@ -42,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MainActivity.this, SetWeightGender.class);
-                startActivity(intent);
+                weight_gender_back.launch(intent);
             }
         });
 

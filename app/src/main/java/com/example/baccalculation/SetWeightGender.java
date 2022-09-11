@@ -43,20 +43,21 @@ public class SetWeightGender extends AppCompatActivity {
                     genderReturn="Male";
                 }
                 if(weight_input.getText().length()==0 || gender.getCheckedRadioButtonId() == -1){
-                    Toast toast2 = Toast.makeText(SetWeightGender.this, "Set weight and gender first.", Toast.LENGTH_SHORT);
-                    toast2.setGravity(Gravity.CENTER, 0, 0);
-                    toast2.show();
+                    Toast toast = Toast.makeText(SetWeightGender.this, "Set weight and gender first.", Toast.LENGTH_SHORT);
+                    toast.setGravity(Gravity.CENTER, 0, 0);
+                    toast.show();
                 }
-                Profile user = new Profile(num_weight,genderReturn);
-
-                Intent intent = new Intent();
-                intent.putExtra(KEY,user);
-                setResult(RESULT_OK,intent);
-                finish();
+                else {
+                    Intent intent = new Intent();
+                    intent.putExtra(KEY, new Profile(num_weight, genderReturn));
+                    setResult(RESULT_OK, intent);
+                    finish();
+                }
 
 
             }
         });
+
         cancel = findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
