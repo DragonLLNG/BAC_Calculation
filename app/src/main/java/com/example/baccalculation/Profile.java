@@ -7,6 +7,9 @@ public class Profile implements Parcelable {
     double weight;
     String gender;
 
+    public Profile(){
+    }
+
     public Profile(double weight, String gender){
         this.weight = weight;
         this.gender = gender;
@@ -35,6 +38,13 @@ public class Profile implements Parcelable {
 
     public String getGender(){
         return gender;
+    }
+
+    public void setWeight(double weight){
+        this.weight = weight;
+    }
+    public void setGender(String gender){
+        this.gender = gender;
     }
 
 

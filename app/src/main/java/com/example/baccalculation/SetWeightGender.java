@@ -18,7 +18,7 @@ public class SetWeightGender extends AppCompatActivity {
     RadioGroup gender;
     String genderReturn;
     Button setw, cancel;
-    final static public String KEY = "KEY";
+    final static public String USER_KEY = "User";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,17 +47,14 @@ public class SetWeightGender extends AppCompatActivity {
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
                 }
-                else {
-                    Intent intent = new Intent();
-                    intent.putExtra(KEY, new Profile(num_weight, genderReturn));
+                else{
+                    Intent intent = new Intent(SetWeightGender.this, MainActivity.class);
+                    intent.putExtra(USER_KEY, new Profile(num_weight, genderReturn));
                     setResult(RESULT_OK, intent);
-                    finish();
+                    startActivity(intent);
                 }
-
-
             }
         });
-
         cancel = findViewById(R.id.cancel);
         cancel.setOnClickListener(new View.OnClickListener() {
             @Override
