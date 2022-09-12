@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     TextView input_recieve, bacOut, status, numDrinks, usrWeight;
     static Profile user = new Profile();
-    ArrayList <Drinks> drinksList = new ArrayList<Drinks>();
+    static ArrayList <Drinks> drinksList = new ArrayList<Drinks>();
     final static public String DRINKLIST_KEY = "DRINKS_LIST";
 
     @Override
