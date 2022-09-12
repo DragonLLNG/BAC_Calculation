@@ -61,21 +61,76 @@ public class ViewDrinks extends AppCompatActivity {
         findViewById(R.id.next).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //iterator++;
-                System.out.println("you hit next");
+                iterator++;
+                if( iterator > drinkList.size() -1){
+                    iterator = drinkList.size() - 1;
+                }
+                //Label
+                String sizeStr = Integer.toString(drinkList.size());
+                String itrString = Integer.toString(iterator+1);
+                label.setText("Drink " + itrString + " out of " + sizeStr);
+
+                //Ounces
+                String drinkOz = Integer.toString(drinkList.get(iterator).getSize());
+                size.setText(drinkOz + " oz");
+
+                //Percent
+                String percentStr = Double.toString(drinkList.get(iterator).getAlcPercent()*100);
+                percent.setText(percentStr + "% Alcohol");
+                System.out.println("you hit prev");
             }
         });
         findViewById(R.id.previous).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //iterator--;
+                iterator--;
+                if( iterator < 0){
+                    iterator = drinkList.size() - 1;
+                }
+                //Label
+                String sizeStr = Integer.toString(drinkList.size());
+                String itrString = Integer.toString(iterator+1);
+                label.setText("Drink " + itrString + " out of " + sizeStr);
+
+                //Ounces
+                String drinkOz = Integer.toString(drinkList.get(iterator).getSize());
+                size.setText(drinkOz + " oz");
+
+                //Percent
+                String percentStr = Double.toString(drinkList.get(iterator).getAlcPercent()*100);
+                percent.setText(percentStr + "% Alcohol");
                 System.out.println("you hit prev");
             }
         });
         findViewById(R.id.trash).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                System.out.println("you hit del");
+                drinkList.remove(iterator);
+                iterator -= 1;
+                if(drinkList.size() != 0){
+                    if(iterator < 0){
+                        iterator = 0;
+                        //Label
+                        String sizeStr = Integer.toString(drinkList.size());
+                        String itrString = Integer.toString(iterator+1);
+                        label.setText("Drink " + itrString + " out of " + sizeStr);
+
+                        //Ounces
+                        String drinkOz = Integer.toString(drinkList.get(iterator).getSize());
+                        size.setText(drinkOz + " oz");
+
+                        //Percent
+                        String percentStr = Double.toString(drinkList.get(iterator).getAlcPercent()*100);
+                        percent.setText(percentStr + "% Alcohol");
+                        System.out.println("you hit prev");
+                    }
+
+                }
+                else{
+                    label.setText("Drink # out of N");
+                    size.setText("1 oz");
+                    percent.setText("x% Alcohol");
+                }
             }
         });
 
