@@ -16,6 +16,23 @@ public class Drinks implements Parcelable {
         this.size = size;
     }
 
+    protected Drinks(Parcel in) {
+        alcPercent = in.readDouble();
+        size = in.readInt();
+    }
+
+    public static final Creator<Drinks> CREATOR = new Creator<Drinks>() {
+        @Override
+        public Drinks createFromParcel(Parcel in) {
+            return new Drinks(in);
+        }
+
+        @Override
+        public Drinks[] newArray(int size) {
+            return new Drinks[size];
+        }
+    };
+
     //Getters
     public double getAlcPercent(){
         return this.alcPercent;
@@ -32,17 +49,6 @@ public class Drinks implements Parcelable {
         this.size = size;
     }
 
-    public static final Creator<Profile> CREATOR = new Creator<Profile>() {
-        @Override
-        public Profile createFromParcel(Parcel in) {
-            return new Profile(in);
-        }
-
-        @Override
-        public Profile[] newArray(int size) {
-            return new Profile[size];
-        }
-    };
 
     @Override
     public int describeContents() {
