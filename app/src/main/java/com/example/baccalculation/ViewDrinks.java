@@ -74,7 +74,7 @@ public class ViewDrinks extends AppCompatActivity {
         });
         findViewById(R.id.trash).setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {cd 
+            public void onClick(View view) {
                 System.out.println("you hit del");
             }
         });

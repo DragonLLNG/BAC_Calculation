@@ -21,7 +21,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView input_recieve, bacOut, status;
+    TextView input_recieve, bacOut, status, numDrinks, usrWeight;
     static Profile user = new Profile();
     ArrayList <Drinks> drinksList = new ArrayList<Drinks>();
     final static public String DRINKLIST_KEY = "DRINKS_LIST";
@@ -57,6 +57,31 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        findViewById(R.id.reset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                usrWeight = findViewById(R.id.initial_weight);
+                numDrinks = findViewById(R.id.num_drink);
+                bacOut = findViewById(R.id.bac_level);
+
+                try {
+                    status.setBackgroundResource(R.drawable.roundedcorner);
+                    GradientDrawable drawable = (GradientDrawable) status.getBackground();
+
+                    drinksList.clear();
+                    bacOut.setText("0.000");
+                    usrWeight.setText("N/A");
+                    numDrinks.setText("0");
+                    status.setText("You're safe");
+                    drawable.setColor(Color.GREEN);
+                    user = new Profile();
+
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
     }
 
@@ -65,6 +90,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         TextView userWeight = findViewById(R.id.initial_weight);
         TextView numDrinks = findViewById(R.id.num_drink);
+
 
 
         //Parsing in the Drinks and user
