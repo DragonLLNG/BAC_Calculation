@@ -4,14 +4,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.GestureDetector;
 import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ViewDrinks extends AppCompatActivity {
+
+    Calendar calendar;
+    SimpleDateFormat dateFormat;
+    String date;
+    TextView dateTime;
 
     ArrayList <Drinks> drinkList = new ArrayList<Drinks>();
     TextView label, size, percent, dateAdded;
@@ -22,6 +30,11 @@ public class ViewDrinks extends AppCompatActivity {
         setContentView(R.layout.activity_view_drinks);
         setTitle("View Drinks");
 
+        dateTime = findViewById(R.id.date);
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("MM/dd/yyy HH:mm");
+        date = dateFormat.format(calendar.getTime());
+        dateTime.setText(date);
 
 
         label = findViewById(R.id.num_drinks_view);
